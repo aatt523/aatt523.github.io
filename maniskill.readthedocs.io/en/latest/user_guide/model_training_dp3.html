@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
-    <title>ACT - FGManip Policy Guide</title>
+    <title>3D Diffusion Policy (DP3)</title>
 
     <script data-cfasync="false">
         document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -26,11 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css"/>
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css"/>
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css"/>
-
     <script src="../_static/scripts/fontawesomeb6e5.js?digest=8878045cc6db502f8baf"></script>
     <link rel="preload" as="script" href="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"/>
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"/>
-
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
@@ -42,9 +40,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-
-    <meta name="docsearch:language" content="en"/>
-    <meta name="docsearch:version" content="latest"/>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
@@ -63,17 +58,6 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-9 navbar-header-items">
-            <div class="me-auto navbar-header-items__center">
-                <div class="navbar-item">
-                    <nav>
-                        <ul class="bd-navbar-elements navbar-nav">
-                            <li class="nav-item"><a class="nav-link nav-internal" href="index.html">User Guide</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
     </div>
 </header>
 
@@ -82,11 +66,9 @@
         <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
             <div class="sidebar-primary-items__start sidebar-primary__section">
                 <div class="sidebar-primary-item">
-                    <nav class="bd-docs-nav bd-links"
-                         aria-label="Section Navigation">
+                    <nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
                         <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span
-                                class="caption-text">Get started</span></p>
+                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Get started</span></p>
                             <ul class="nav bd-sidenav">
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/installation.html">Installation</a></li>
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/quickstart.html">Quickstart</a></li>
@@ -121,7 +103,7 @@
                                                 <details open="open">
                                                     <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
                                                     <ul>
-                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#act">ACT</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
@@ -170,107 +152,209 @@
             <div class="bd-content">
                 <div class="bd-article-container">
                     <article class="bd-article">
-                        <section id="act">
-                            <h1>Action Chunking with Transformers (ACT)<a class="headerlink" href="#act" title="Permalink to this heading">#</a></h1>
+                        <section id="dp3">
+                            <h1>3D Diffusion Policy (DP3)<a class="headerlink" href="#dp3" title="Permalink to this heading">#</a></h1>
                             <p>
-                                This page documents the ACT baseline used in FGManip.
-                                This implementation is based on
-                                <a class="reference external" href="https://arxiv.org/pdf/2304.13705">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>
-                                and adapted from the
-                                <a class="reference external" href="https://github.com/tonyzhaozh/act">original ACT codebase</a>.
+                                Code for running DP3 based on
+                                <a class="reference external" href="https://arxiv.org/abs/2403.03954">3D Diffusion Policy: Generalizable Visuomotor Policy Learning via Simple 3D Representations</a>.
+                                Adapted from
+                                <a class="reference external" href="https://github.com/linden713/ManiSkill/tree/main/examples/baselines/diffusion_policy_3d">linden713/ManiSkill diffusion_policy_3d</a>
+                                and the
+                                <a class="reference external" href="https://github.com/YanjieZe/3D-Diffusion-Policy">original DP3 repository</a>.
                             </p>
                             <p>
-                                <strong>Integration status:</strong> ACT currently runs as a dedicated policy pipeline.
-                                Command interfaces and config layout are not yet fully unified with all other policy backends.
+                                <strong>Integration status:</strong> DP3 uses a dedicated point-cloud data pipeline
+                                (replay -> HDF5 -> Zarr -> task YAML). It is documented in the same style as other policies,
+                                but remains operationally independent.
                             </p>
 
-                            <section id="act-installation">
-                                <h2>Installation<a class="headerlink" href="#act-installation" title="Permalink to this heading">#</a></h2>
-                                <p>Recommended setup uses conda/mamba for environment isolation.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>conda create -n act-ms python=3.9
-conda activate act-ms
-pip install -e .</pre></div></div>
+                            <section id="dp3-directory">
+                                <h2>Directory Structure<a class="headerlink" href="#dp3-directory" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre>diffusion_policy_3d/
+├── train.py
+├── eval.py
+├── train_policy.sh
+├── eval_policy.sh
+├── setup.py
+├── data/
+├── dataset/
+│   ├── convert_hdf5_to_zarr.py
+│   └── load_trajectories.py
+└── diffusion_policy_3d/
+    ├── config/
+    │   ├── dp3.yaml
+    │   └── task/
+    │       ├── PickCube-v1.yaml
+    │       ├── PlugCharger-v1.yaml
+    │       └── PushCube-v1.yaml
+    ├── policy/dp3.py
+    ├── model/
+    ├── dataset/
+    ├── env_runner/
+    └── env/</pre></div></div>
                             </section>
 
-                            <section id="act-setup">
-                                <h2>Setup<a class="headerlink" href="#act-setup" title="Permalink to this heading">#</a></h2>
-                                <p>
-                                    Before training, read the imitation learning setup guide:
-                                    <a class="reference internal" href="learning_from_demos/setup.html">imitation learning setup documentation</a>.
-                                    It covers demo download, preprocessing, fair evaluation protocol, and common failure modes.
-                                </p>
+                            <section id="dp3-installation">
+                                <h2>1. Installation<a class="headerlink" href="#dp3-installation" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda create -n mani_skill python=3.10 -y
+conda activate mani_skill
+
+pip install torch torchvision torchaudio
+pip install mani_skill
+
+git clone https://github.com/facebookresearch/pytorch3d.git
+cd pytorch3d &amp;&amp; pip install -e .
+cd ..
+
+cd core/policies/diffusion_policy_3d
+pip install -e .
+
+conda install -y libstdcxx-ng -c conda-forge
+pip install "setuptools&lt;81"</pre></div></div>
                             </section>
 
-                            <section id="act-training">
-                                <h2>Training<a class="headerlink" href="#act-training" title="Permalink to this heading">#</a></h2>
-                                <p>
-                                    ACT learns from expert trajectories and is sensitive to episode horizon.
-                                    For slower demonstrations (e.g., motion planning or teleoperation), increase
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    so policy rollouts have enough time to complete the task.
-                                </p>
-                                <p>
-                                    Practical guideline: set
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    to about 2x the mean trajectory length of your training demos.
-                                </p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>seed=1
-demos=100
-python train.py --env-id PickCube-v1 \
-  --demo-path ~/.maniskill/demos/PickCube-v1/motionplanning/trajectory.state.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode "pd_ee_delta_pos" --sim-backend "physx_cpu" --num_demos $demos --max_episode_steps 100 \
-  --total_iters 30000 --log_freq 100 --eval_freq 5000 \
-  --exp-name=act-PickCube-v1-state-${demos}_motionplanning_demos-$seed \
-  --track</pre></div></div>
+                            <section id="dp3-replay">
+                                <h2>2. Replay Trajectories<a class="headerlink" href="#dp3-replay" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>cd /home/DMP/nmi/FGManip
 
-                                <p>Project-specific example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>python core/policies/act/train.py \
-  --env-id grasp_part \
-  --object-name bottle \
-  --part-name cap \
-  --demo-path demos/output.state+rgb.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode pd_ee_delta_pos \
-  --num_demos 40 \
-  --total_iters 100000 \
-  --exp-name act-grasp-cabinet-handle \
-  --max_episode_steps 100</pre></div></div>
+python utils/replay_trajectory.py \
+    --traj-path demos/PlugCharger-v1/motionplanning/trajectory.h5 \
+    --use-first-env-state \
+    -c pd_joint_delta_pos \
+    -o pointcloud \
+    --save-traj \
+    --num-envs 20 \
+    -b physx_cpu</pre></div></div>
+
+                                <table class="table">
+                                    <thead>
+                                    <tr><th>Parameter</th><th>Description</th><th>Common Values</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr><td><code>-c</code></td><td>Control mode</td><td><code>pd_joint_delta_pos</code>, <code>pd_ee_delta_pose</code>, <code>pd_ee_delta_pos</code></td></tr>
+                                    <tr><td><code>-o</code></td><td>Observation mode</td><td><code>pointcloud</code></td></tr>
+                                    <tr><td><code>--num-envs</code></td><td>Parallel envs</td><td><code>20</code></td></tr>
+                                    <tr><td><code>-b</code></td><td>Simulation backend</td><td><code>physx_cpu</code></td></tr>
+                                    </tbody>
+                                </table>
+
+                                <p><strong>Important:</strong> control mode determines action dimension, and task config must match it.</p>
+                                <p>Output example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>demos/PlugCharger-v1/motionplanning/trajectory.pointcloud.pd_joint_delta_pos.cpu.h5</pre></div></div>
                             </section>
 
-                            <section id="act-collaboration-template">
-                                <h2>Maintenance Checklist<a class="headerlink" href="#act-collaboration-template" title="Permalink to this heading">#</a></h2>
-                                <p>Use this checklist to keep ACT documentation consistent across contributors.</p>
-                                <ul class="simple">
-                                    <li><p><strong>Task + Data:</strong> environment ID, control mode, demo source, number of demonstrations, train/val split.</p></li>
-                                    <li><p><strong>Core Hyperparameters:</strong> total iters, batch size, chunk size, learning rate, max episode steps.</p></li>
-                                    <li><p><strong>Compute + Runtime:</strong> GPU type, wall-clock training time, average iteration speed.</p></li>
-                                    <li><p><strong>Evaluation Protocol:</strong> number of eval episodes, seeds, success metric definition, termination rules.</p></li>
-                                    <li><p><strong>Results Table:</strong> success rate mean/std over seeds, failure mode notes, demo videos.</p></li>
-                                    <li><p><strong>Reproducibility:</strong> exact command, commit hash, dataset checksum/path, config snapshot.</p></li>
-                                </ul>
+                            <section id="dp3-zarr">
+                                <h2>3. Convert to Zarr Format<a class="headerlink" href="#dp3-zarr" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>cd core/policies/diffusion_policy_3d
+
+python dataset/convert_hdf5_to_zarr.py \
+    --env_name PlugCharger-v1 \
+    --num_demos 100 \
+    --hdf5_path /home/DMP/nmi/FGManip/demos/PlugCharger-v1/motionplanning/trajectory.pointcloud.pd_joint_delta_pos.cpu.h5 \
+    --zarr_dir ./data/</pre></div></div>
+
+                                <p>Expected output shapes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>action shape: (24142, 8)
+state shape: (24142, 25)
+point_cloud shape: (24142, 512, 6)</pre></div></div>
+
+                                <p>Verify Zarr data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python -c "import zarr; z=zarr.open('./data/maniskill_PlugCharger-v1_expert.zarr','r'); print(z['data']['action'].shape)"</pre></div></div>
                             </section>
 
-                            <section id="act-citation">
-                                <h2>Citation<a class="headerlink" href="#act-citation" title="Permalink to this heading">#</a></h2>
-                                <p>If you use this baseline, please cite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre>@inproceedings{DBLP:conf/rss/ZhaoKLF23,
-  author       = {Tony Z. Zhao and
-                  Vikash Kumar and
-                  Sergey Levine and
-                  Chelsea Finn},
-  editor       = {Kostas E. Bekris and
-                  Kris Hauser and
-                  Sylvia L. Herbert and
-                  Jingjin Yu},
-  title        = {Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware},
-  booktitle    = {Robotics: Science and Systems XIX, Daegu, Republic of Korea, July
-                  10-14, 2023},
-  year         = {2023},
-  url          = {https://doi.org/10.15607/RSS.2023.XIX.016},
-  doi          = {10.15607/RSS.2023.XIX.016},
-  timestamp    = {Thu, 20 Jul 2023 15:37:49 +0200},
-  biburl       = {https://dblp.org/rec/conf/rss/ZhaoKLF23.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
+                            <section id="dp3-task-config">
+                                <h2>4. Write Task Config<a class="headerlink" href="#dp3-task-config" title="Permalink to this heading">#</a></h2>
+                                <p>Create task YAML under <code class="docutils literal notranslate"><span class="pre">diffusion_policy_3d/config/task/</span></code>. All dimensions must match Zarr.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre>name: PlugCharger-v1
+task_name: ${name}
+
+shape_meta: &amp;shape_meta
+  obs:
+    point_cloud:
+      shape: [512, 3]
+      type: point_cloud
+    agent_pos:
+      shape: [25]
+      type: low_dim
+  action:
+    shape: [8]
+
+env_runner:
+  _target_: diffusion_policy_3d.env_runner.maniskill_runner.ManiSkillRunner
+  eval_episodes: 20
+  max_steps: 200
+  n_obs_steps: ${n_obs_steps}
+  n_action_steps: ${n_action_steps}
+  control_mode: pd_joint_delta_pos
+  task_name: ${task_name}
+  num_eval_envs: 1
+  sim_backend: cpu
+  device: ${training.device}
+  use_point_crop: ${policy.use_point_crop}
+  use_pc_color: ${policy.use_pc_color}
+
+dataset:
+  _target_: diffusion_policy_3d.dataset.maniskill_dataset.ManiSkillDataset
+  zarr_path: ./data/maniskill_PlugCharger-v1_expert.zarr
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  val_ratio: 0.02
+  max_train_episodes: 90</pre></div></div>
+                                <p><strong>Control mode and action dimension reference:</strong></p>
+                                <table class="table">
+                                    <thead>
+                                    <tr><th>Control Mode</th><th>Action Dim</th><th>Description</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr><td><code>pd_joint_delta_pos</code></td><td>8</td><td>7 joint deltas + 1 gripper</td></tr>
+                                    <tr><td><code>pd_ee_delta_pose</code></td><td>7</td><td>6 EE pose deltas + 1 gripper</td></tr>
+                                    <tr><td><code>pd_ee_delta_pos</code></td><td>4</td><td>3 EE position deltas + 1 gripper</td></tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                            <section id="dp3-train">
+                                <h2>5. Training<a class="headerlink" href="#dp3-train" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>cd core/policies/diffusion_policy_3d
+conda activate mani_skill
+
+# bash train_policy.sh &lt;alg_name&gt; &lt;task_name&gt; &lt;exp_id&gt; &lt;seed&gt; &lt;gpu_id&gt;
+bash train_policy.sh dp3 PlugCharger-v1 001 0 0</pre></div></div>
+                                <p>Outputs are saved to <code class="docutils literal notranslate"><span class="pre">data/outputs/&lt;task&gt;-&lt;alg&gt;-&lt;id&gt;_seed&lt;seed&gt;/</span></code>. Logging uses WandB.</p>
+                            </section>
+
+                            <section id="dp3-eval">
+                                <h2>6. Evaluation<a class="headerlink" href="#dp3-eval" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>bash eval_policy.sh dp3 PlugCharger-v1 001 0 0</pre></div></div>
+                            </section>
+
+                            <section id="dp3-troubleshooting">
+                                <h2>Troubleshooting<a class="headerlink" href="#dp3-troubleshooting" title="Permalink to this heading">#</a></h2>
+                                <p><strong><code class="docutils literal notranslate"><span class="pre">CXXABI_1.3.15 not found</span></code></strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda install -y libstdcxx-ng -c conda-forge
+export LD_PRELOAD=${CONDA_PREFIX}/lib/libstdc++.so.6</pre></div></div>
+                                <p><strong><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError: No module named 'pkg_resources'</span></code></strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install "setuptools&lt;81"</pre></div></div>
+                            </section>
+
+                            <section id="dp3-citation">
+                                <h2>Citation<a class="headerlink" href="#dp3-citation" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre>@inproceedings{ze20243d,
+  title={3d diffusion policy: Generalizable visuomotor policy learning via simple 3d representations},
+  author={Ze, Yanjie and Zhang, Gu and Zhang, Kangning and Hu, Chenyuan and Wang, Muhan and Xu, Huazhe},
+  booktitle={ICRA 2024 Workshop on 3D Visual Representations for Robot Manipulation},
+  year={2024}
 }</pre></div></div>
+                            </section>
+                            <section id="dp3-maintenance">
+                                <h2>Maintenance Checklist<a class="headerlink" href="#dp3-maintenance" title="Permalink to this heading">#</a></h2>
+                                <ul class="simple">
+                                    <li><p>Keep replay control mode, action dimension, and task YAML action shape consistent.</p></li>
+                                    <li><p>Keep Zarr path naming convention stable across train/eval scripts.</p></li>
+                                    <li><p>Record exact train/eval commands and output directory for reproducibility.</p></li>
+                                </ul>
                             </section>
                         </section>
                     </article>

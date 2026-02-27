@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
-    <title>ACT - FGManip Policy Guide</title>
+    <title>LeRobot pi0.5 - FGManip Policy Guide</title>
 
     <script data-cfasync="false">
         document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -82,11 +82,9 @@
         <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
             <div class="sidebar-primary-items__start sidebar-primary__section">
                 <div class="sidebar-primary-item">
-                    <nav class="bd-docs-nav bd-links"
-                         aria-label="Section Navigation">
+                    <nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
                         <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span
-                                class="caption-text">Get started</span></p>
+                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Get started</span></p>
                             <ul class="nav bd-sidenav">
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/installation.html">Installation</a></li>
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/quickstart.html">Quickstart</a></li>
@@ -121,10 +119,10 @@
                                                 <details open="open">
                                                     <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
                                                     <ul>
-                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#act">ACT</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
+                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#pi05">Lerobot Pi05</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
                                                     </ul>
                                                 </details>
@@ -170,107 +168,137 @@
             <div class="bd-content">
                 <div class="bd-article-container">
                     <article class="bd-article">
-                        <section id="act">
-                            <h1>Action Chunking with Transformers (ACT)<a class="headerlink" href="#act" title="Permalink to this heading">#</a></h1>
+                        <section id="pi05">
+                            <h1>LeRobot pi0.5<a class="headerlink" href="#pi05" title="Permalink to this heading">#</a></h1>
                             <p>
-                                This page documents the ACT baseline used in FGManip.
-                                This implementation is based on
-                                <a class="reference external" href="https://arxiv.org/pdf/2304.13705">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>
-                                and adapted from the
-                                <a class="reference external" href="https://github.com/tonyzhaozh/act">original ACT codebase</a>.
+                                This page documents the FGManip workflow based on LeRobot pi0.5.
+                                The paper is available at
+                                <a class="reference external" href="https://www.pi.website/download/pi05.pdf">pi0.5: a Vision-Language-Action Model with Open-World Generalization</a>.
                             </p>
                             <p>
-                                <strong>Integration status:</strong> ACT currently runs as a dedicated policy pipeline.
-                                Command interfaces and config layout are not yet fully unified with all other policy backends.
+                                <strong>Integration status:</strong> pi0.5 currently runs through the LeRobot toolchain.
+                                It shares dataset conventions with other policies where possible, but runtime and conversion steps are still policy-specific.
                             </p>
 
-                            <section id="act-installation">
-                                <h2>Installation<a class="headerlink" href="#act-installation" title="Permalink to this heading">#</a></h2>
-                                <p>Recommended setup uses conda/mamba for environment isolation.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>conda create -n act-ms python=3.9
-conda activate act-ms
-pip install -e .</pre></div></div>
-                            </section>
-
-                            <section id="act-setup">
-                                <h2>Setup<a class="headerlink" href="#act-setup" title="Permalink to this heading">#</a></h2>
+                            <section id="pi05-overview">
+                                <h2>Overview<a class="headerlink" href="#pi05-overview" title="Permalink to this heading">#</a></h2>
                                 <p>
-                                    Before training, read the imitation learning setup guide:
-                                    <a class="reference internal" href="learning_from_demos/setup.html">imitation learning setup documentation</a>.
-                                    It covers demo download, preprocessing, fair evaluation protocol, and common failure modes.
+                                    Current implementation reuses LeRobot pi0.5 for policy inference and evaluation in FGManip.
+                                    Because the pipeline is built on LeRobot, this page can also serve as a template for other VLA policies supported by LeRobot.
                                 </p>
-                            </section>
-
-                            <section id="act-training">
-                                <h2>Training<a class="headerlink" href="#act-training" title="Permalink to this heading">#</a></h2>
-                                <p>
-                                    ACT learns from expert trajectories and is sensitive to episode horizon.
-                                    For slower demonstrations (e.g., motion planning or teleoperation), increase
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    so policy rollouts have enough time to complete the task.
-                                </p>
-                                <p>
-                                    Practical guideline: set
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    to about 2x the mean trajectory length of your training demos.
-                                </p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>seed=1
-demos=100
-python train.py --env-id PickCube-v1 \
-  --demo-path ~/.maniskill/demos/PickCube-v1/motionplanning/trajectory.state.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode "pd_ee_delta_pos" --sim-backend "physx_cpu" --num_demos $demos --max_episode_steps 100 \
-  --total_iters 30000 --log_freq 100 --eval_freq 5000 \
-  --exp-name=act-PickCube-v1-state-${demos}_motionplanning_demos-$seed \
-  --track</pre></div></div>
-
-                                <p>Project-specific example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>python core/policies/act/train.py \
-  --env-id grasp_part \
-  --object-name bottle \
-  --part-name cap \
-  --demo-path demos/output.state+rgb.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode pd_ee_delta_pos \
-  --num_demos 40 \
-  --total_iters 100000 \
-  --exp-name act-grasp-cabinet-handle \
-  --max_episode_steps 100</pre></div></div>
-                            </section>
-
-                            <section id="act-collaboration-template">
-                                <h2>Maintenance Checklist<a class="headerlink" href="#act-collaboration-template" title="Permalink to this heading">#</a></h2>
-                                <p>Use this checklist to keep ACT documentation consistent across contributors.</p>
                                 <ul class="simple">
-                                    <li><p><strong>Task + Data:</strong> environment ID, control mode, demo source, number of demonstrations, train/val split.</p></li>
-                                    <li><p><strong>Core Hyperparameters:</strong> total iters, batch size, chunk size, learning rate, max episode steps.</p></li>
-                                    <li><p><strong>Compute + Runtime:</strong> GPU type, wall-clock training time, average iteration speed.</p></li>
-                                    <li><p><strong>Evaluation Protocol:</strong> number of eval episodes, seeds, success metric definition, termination rules.</p></li>
-                                    <li><p><strong>Results Table:</strong> success rate mean/std over seeds, failure mode notes, demo videos.</p></li>
-                                    <li><p><strong>Reproducibility:</strong> exact command, commit hash, dataset checksum/path, config snapshot.</p></li>
+                                    <li><p><strong>Policy entrypoint:</strong> <code class="docutils literal notranslate"><span class="pre">FGManip/core/policies/pi05/evaluate.py</span></code></p></li>
+                                    <li><p><strong>Data converter:</strong> <code class="docutils literal notranslate"><span class="pre">utils/convert_to_lerobot.py</span></code></p></li>
+                                    <li><p><strong>Checkpoint format:</strong> LeRobot <code class="docutils literal notranslate"><span class="pre">pretrained_model</span></code> directory with <code class="docutils literal notranslate"><span class="pre">config.json</span></code> and <code class="docutils literal notranslate"><span class="pre">*.safetensors</span></code></p></li>
                                 </ul>
                             </section>
 
-                            <section id="act-citation">
-                                <h2>Citation<a class="headerlink" href="#act-citation" title="Permalink to this heading">#</a></h2>
-                                <p>If you use this baseline, please cite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre>@inproceedings{DBLP:conf/rss/ZhaoKLF23,
-  author       = {Tony Z. Zhao and
-                  Vikash Kumar and
-                  Sergey Levine and
-                  Chelsea Finn},
-  editor       = {Kostas E. Bekris and
-                  Kris Hauser and
-                  Sylvia L. Herbert and
-                  Jingjin Yu},
-  title        = {Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware},
-  booktitle    = {Robotics: Science and Systems XIX, Daegu, Republic of Korea, July
-                  10-14, 2023},
-  year         = {2023},
-  url          = {https://doi.org/10.15607/RSS.2023.XIX.016},
-  doi          = {10.15607/RSS.2023.XIX.016},
-  timestamp    = {Thu, 20 Jul 2023 15:37:49 +0200},
-  biburl       = {https://dblp.org/rec/conf/rss/ZhaoKLF23.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
-}</pre></div></div>
+                            <section id="pi05-evaluate">
+                                <h2>1. Evaluation Script Usage<a class="headerlink" href="#pi05-evaluate" title="Permalink to this heading">#</a></h2>
+                                <p>
+                                    Evaluation script:
+                                    <code class="docutils literal notranslate"><span class="pre">FGManip/core/policies/pi05/evaluate.py</span></code>.
+                                    It supports loading LeRobot fine-tuned checkpoints and running closed-loop tests in FGManip simulation.
+                                </p>
+
+                                <section id="pi05-evaluate-generic">
+                                    <h3>1.1 Generic Task Evaluation<a class="headerlink" href="#pi05-evaluate-generic" title="Permalink to this heading">#</a></h3>
+                                    <p>For tasks that do not require specific object or part identifiers (e.g. <code class="docutils literal notranslate"><span class="pre">plug_charger</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python core/policies/pi05/evaluate.py \
+  --policy-path /Your/path/to/pretrained_model \
+  --env-id plug_charger \
+  --obs-mode rgb \
+  --control-mode pd_joint_delta_pos \
+  --n-episodes 50 \
+  --device cuda \
+  --task "Description of this task" \
+  --record-dir /Your/path/to/save \
+  --save-video</pre></div></div>
+                                    <p><strong>Arguments:</strong></p>
+                                    <ul class="simple">
+                                        <li><p><code class="docutils literal notranslate"><span class="pre">--policy-path</span></code>: path to LeRobot training output <code class="docutils literal notranslate"><span class="pre">pretrained_model</span></code>.</p></li>
+                                        <li><p><code class="docutils literal notranslate"><span class="pre">--env-id</span></code>: FGManip environment ID.</p></li>
+                                        <li><p><code class="docutils literal notranslate"><span class="pre">--task</span></code>: natural language description aligned with training semantics.</p></li>
+                                    </ul>
+                                </section>
+
+                                <section id="pi05-evaluate-object">
+                                    <h3>1.2 Specific-Object Task Evaluation<a class="headerlink" href="#pi05-evaluate-object" title="Permalink to this heading">#</a></h3>
+                                    <p>For tasks requiring explicit object and part selection (e.g. <code class="docutils literal notranslate"><span class="pre">toggle_switch</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python FGManip/core/policies/pi05/evaluate.py \
+  --policy-path /Your/path/to/pretrained_model \
+  --env-id toggle_switch \
+  --object-name 100920 \
+  --part-name button \
+  --obs-mode rgb \
+  --control-mode pd_joint_delta_pos \
+  --n-episodes 50 \
+  --device cuda \
+  --task "Description of this task" \
+  --record-dir /Your/path/to/save \
+  --save-video</pre></div></div>
+                                    <p><strong>Differences from generic evaluation:</strong></p>
+                                    <ul class="simple">
+                                        <li><p>Add <code class="docutils literal notranslate"><span class="pre">--object-name</span></code> for asset/object ID.</p></li>
+                                        <li><p>Add <code class="docutils literal notranslate"><span class="pre">--part-name</span></code> for target part.</p></li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <section id="pi05-convert">
+                                <h2>2. Data Conversion Notes<a class="headerlink" href="#pi05-convert" title="Permalink to this heading">#</a></h2>
+                                <p>
+                                    Before LeRobot training/inference, convert ManiSkill-format trajectories to LeRobot dataset format.
+                                </p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python utils/convert_to_lerobot.py \
+  --traj-path demos/trajectory.h5 \
+  --output-dir demos/lerobot_grasp_part \
+  --task-name "Grasp Part" \
+  --fps 30 \
+  --robot-type panda</pre></div></div>
+
+                                <section id="pi05-normalization">
+                                    <h3>2.1 Quantile Normalization Stats<a class="headerlink" href="#pi05-normalization" title="Permalink to this heading">#</a></h3>
+                                    <p>
+                                        The converter should generate <code class="docutils literal notranslate"><span class="pre">stats.json</span></code> with
+                                        <code class="docutils literal notranslate"><span class="pre">q01</span></code> and <code class="docutils literal notranslate"><span class="pre">q99</span></code> for action/state normalization.
+                                    </p>
+<div class="highlight-python notranslate"><div class="highlight"><pre>'q01': np.percentile(actions, 1, axis=0).tolist(),
+'q99': np.percentile(actions, 99, axis=0).tolist()</pre></div></div>
+                                    <p>
+                                        Reason: pi0.5 uses quantile normalization by default. Missing quantile stats causes:
+                                    </p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>ValueError: QUANTILES normalization mode requires q01 and q99 stats</pre></div></div>
+                                </section>
+                            </section>
+
+                            <section id="pi05-installation">
+                                <h2>3. Environment Setup<a class="headerlink" href="#pi05-installation" title="Permalink to this heading">#</a></h2>
+                                <p>Since this workflow depends on LeRobot pi0.5 and ManiSkill simulation, install both stacks.</p>
+                                <p><strong>ManiSkill</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install --upgrade mani_skill
+pip install torch</pre></div></div>
+                                <p><strong>LeRobot</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install -e ".[pi]"</pre></div></div>
+                                <p>For LeRobot 0.4.0, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install "lerobot[pi]@git+https://github.com/huggingface/lerobot.git"</pre></div></div>
+                                <p><strong>Compatibility Tips</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install numpy==1.26.4</pre></div></div>
+                                <p>For RTX 50-series GPUs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install torch==2.10.0 torchvision torchaudio</pre></div></div>
+                            </section>
+
+                            <section id="pi05-collab-template">
+                                <h2>4. Maintenance Checklist<a class="headerlink" href="#pi05-collab-template" title="Permalink to this heading">#</a></h2>
+                                <p>Use this structure when contributors update LeRobot-based policy pages.</p>
+                                <ul class="simple">
+                                    <li><p><strong>Model Source:</strong> paper link, upstream repo, exact version tag.</p></li>
+                                    <li><p><strong>Environment Mapping:</strong> supported FGManip env IDs and task prompts.</p></li>
+                                    <li><p><strong>Data Contract:</strong> input trajectory format, conversion script, required stats fields.</p></li>
+                                    <li><p><strong>Runbook:</strong> train/eval command matrix for generic and object-specific tasks.</p></li>
+                                    <li><p><strong>Validation:</strong> required metrics, number of episodes, video logging policy.</p></li>
+                                    <li><p><strong>Troubleshooting:</strong> common install/runtime errors and fixes.</p></li>
+                                </ul>
                             </section>
                         </section>
                     </article>

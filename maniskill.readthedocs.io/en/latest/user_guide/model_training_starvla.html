@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
-    <title>ACT - FGManip Policy Guide</title>
+    <title>NVIDIA Isaac GR00T - FGManip Policy Guide</title>
 
     <script data-cfasync="false">
         document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -30,7 +30,6 @@
     <script src="../_static/scripts/fontawesomeb6e5.js?digest=8878045cc6db502f8baf"></script>
     <link rel="preload" as="script" href="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"/>
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"/>
-
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
@@ -82,11 +81,9 @@
         <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
             <div class="sidebar-primary-items__start sidebar-primary__section">
                 <div class="sidebar-primary-item">
-                    <nav class="bd-docs-nav bd-links"
-                         aria-label="Section Navigation">
+                    <nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
                         <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span
-                                class="caption-text">Get started</span></p>
+                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Get started</span></p>
                             <ul class="nav bd-sidenav">
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/installation.html">Installation</a></li>
                                 <li class="toctree-l1"><a class="reference internal" href="getting_started/quickstart.html">Quickstart</a></li>
@@ -121,11 +118,11 @@
                                                 <details open="open">
                                                     <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
                                                     <ul>
-                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#act">ACT</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
                                                         <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
+                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#starvla-gr00t">StarVLA GR00T</a></li>
                                                     </ul>
                                                 </details>
                                             </li>
@@ -170,107 +167,74 @@
             <div class="bd-content">
                 <div class="bd-article-container">
                     <article class="bd-article">
-                        <section id="act">
-                            <h1>Action Chunking with Transformers (ACT)<a class="headerlink" href="#act" title="Permalink to this heading">#</a></h1>
+                        <section id="starvla-gr00t">
+                            <h1>StarVLA GR00T<a class="headerlink" href="#starvla-gr00t" title="Permalink to this heading">#</a></h1>
                             <p>
-                                This page documents the ACT baseline used in FGManip.
-                                This implementation is based on
-                                <a class="reference external" href="https://arxiv.org/pdf/2304.13705">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>
-                                and adapted from the
-                                <a class="reference external" href="https://github.com/tonyzhaozh/act">original ACT codebase</a>.
+                                This page focuses on the GR00T pipeline and documents FGManip training/evaluation examples based on the StarVLA codebase.
+                                Official GR00T resource:
+                                <a class="reference external" href="https://developer.nvidia.com/isaac/gr00t">NVIDIA Isaac GR00T</a>.
                             </p>
                             <p>
-                                <strong>Integration status:</strong> ACT currently runs as a dedicated policy pipeline.
-                                Command interfaces and config layout are not yet fully unified with all other policy backends.
+                                <strong>Integration status:</strong> StarVLA/GR00T currently runs as a two-process integration
+                                (policy server + FGManip evaluator). This differs from single-process runners used by some other policy pages.
                             </p>
 
-                            <section id="act-installation">
-                                <h2>Installation<a class="headerlink" href="#act-installation" title="Permalink to this heading">#</a></h2>
-                                <p>Recommended setup uses conda/mamba for environment isolation.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>conda create -n act-ms python=3.9
-conda activate act-ms
-pip install -e .</pre></div></div>
+                            <section id="starvla-eval">
+                                <h2>1. Evaluation (StarVLA + FGManip)<a class="headerlink" href="#starvla-eval" title="Permalink to this heading">#</a></h2>
+                                <p>Current setup runs two environments because the project is not yet packaged as a single library.</p>
+
+                                <section id="starvla-eval-mods">
+                                    <h3>1.1 Required Script Changes<a class="headerlink" href="#starvla-eval-mods" title="Permalink to this heading">#</a></h3>
+                                    <p>Update both scripts before execution:</p>
+                                    <ul class="simple">
+                                        <li><p><code class="docutils literal notranslate"><span class="pre">run_eval.sh</span></code></p></li>
+                                        <li><p><code class="docutils literal notranslate"><span class="pre">run_policy_server.sh</span></code></p></li>
+                                    </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>export Python=/export/anaconda3/envs/maniskill/bin/python
+export FGManip_HOME=/export/xuhy/zpy/FGManip
+CKPT_PATH=&lt;path to VLA checkpoint&gt;</pre></div></div>
+                                    <p>
+                                        Note: Qwen-GR00T is trained with EE delta action. In this case,
+                                        <code class="docutils literal notranslate"><span class="pre">control_mode</span></code> should be EE and action dim is 7.
+                                        Other models may require a different control mode and action dimension.
+                                    </p>
+                                </section>
+
+                                <section id="starvla-eval-run">
+                                    <h3>1.2 Run Evaluation<a class="headerlink" href="#starvla-eval-run" title="Permalink to this heading">#</a></h3>
+                                    <p>Use two terminals/environments:</p>
+                                    <p><strong>Environment A (policy server, StarVLA model):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda activate starVLA
+cd core/vla/eval
+bash run_policy_server.sh</pre></div></div>
+                                    <p><strong>Environment B (FGManip env runner):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda activate maniskill
+cd core/vla/eval
+bash starVLA/examples/FGManip/eval_files/run_eval.sh</pre></div></div>
+                                </section>
                             </section>
 
-                            <section id="act-setup">
-                                <h2>Setup<a class="headerlink" href="#act-setup" title="Permalink to this heading">#</a></h2>
-                                <p>
-                                    Before training, read the imitation learning setup guide:
-                                    <a class="reference internal" href="learning_from_demos/setup.html">imitation learning setup documentation</a>.
-                                    It covers demo download, preprocessing, fair evaluation protocol, and common failure modes.
-                                </p>
-                            </section>
-
-                            <section id="act-training">
-                                <h2>Training<a class="headerlink" href="#act-training" title="Permalink to this heading">#</a></h2>
-                                <p>
-                                    ACT learns from expert trajectories and is sensitive to episode horizon.
-                                    For slower demonstrations (e.g., motion planning or teleoperation), increase
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    so policy rollouts have enough time to complete the task.
-                                </p>
-                                <p>
-                                    Practical guideline: set
-                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
-                                    to about 2x the mean trajectory length of your training demos.
-                                </p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>seed=1
-demos=100
-python train.py --env-id PickCube-v1 \
-  --demo-path ~/.maniskill/demos/PickCube-v1/motionplanning/trajectory.state.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode "pd_ee_delta_pos" --sim-backend "physx_cpu" --num_demos $demos --max_episode_steps 100 \
-  --total_iters 30000 --log_freq 100 --eval_freq 5000 \
-  --exp-name=act-PickCube-v1-state-${demos}_motionplanning_demos-$seed \
-  --track</pre></div></div>
-
-                                <p>Project-specific example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>python core/policies/act/train.py \
-  --env-id grasp_part \
-  --object-name bottle \
-  --part-name cap \
-  --demo-path demos/output.state+rgb.pd_ee_delta_pos.physx_cpu.h5 \
-  --control-mode pd_ee_delta_pos \
-  --num_demos 40 \
-  --total_iters 100000 \
-  --exp-name act-grasp-cabinet-handle \
-  --max_episode_steps 100</pre></div></div>
-                            </section>
-
-                            <section id="act-collaboration-template">
-                                <h2>Maintenance Checklist<a class="headerlink" href="#act-collaboration-template" title="Permalink to this heading">#</a></h2>
-                                <p>Use this checklist to keep ACT documentation consistent across contributors.</p>
+                            <section id="starvla-train">
+                                <h2>2. Training (StarVLA codebase)<a class="headerlink" href="#starvla-train" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda activate starVLA</pre></div></div>
+                                <p>Prepare data and config:</p>
                                 <ul class="simple">
-                                    <li><p><strong>Task + Data:</strong> environment ID, control mode, demo source, number of demonstrations, train/val split.</p></li>
-                                    <li><p><strong>Core Hyperparameters:</strong> total iters, batch size, chunk size, learning rate, max episode steps.</p></li>
-                                    <li><p><strong>Compute + Runtime:</strong> GPU type, wall-clock training time, average iteration speed.</p></li>
-                                    <li><p><strong>Evaluation Protocol:</strong> number of eval episodes, seeds, success metric definition, termination rules.</p></li>
-                                    <li><p><strong>Results Table:</strong> success rate mean/std over seeds, failure mode notes, demo videos.</p></li>
-                                    <li><p><strong>Reproducibility:</strong> exact command, commit hash, dataset checksum/path, config snapshot.</p></li>
+                                    <li><p>Place datasets (e.g. <code class="docutils literal notranslate"><span class="pre">lerobot_xx</span></code>) at <code class="docutils literal notranslate"><span class="pre">FGManip/core/policies/starvla/starVLA/playground/Dataset/</span></code>.</p></li>
+                                    <li><p>Modify FGManip mixture in <code class="docutils literal notranslate"><span class="pre">core/policies/vla/starvla/starVLA/dataloader/gr00t_lerobot/mixtures.py</span></code>.</p></li>
+                                    <li><p>StarVLA is not fully compatible with LeRobot 3.0 dataset layout. Convert to 2.1 format using <code class="docutils literal notranslate"><span class="pre">lerobot_v30_to_v21</span></code>, and add <code class="docutils literal notranslate"><span class="pre">modality.json</span></code> under <code class="docutils literal notranslate"><span class="pre">meta</span></code>.</p></li>
                                 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>bash run_libero_train.sh</pre></div></div>
                             </section>
 
-                            <section id="act-citation">
-                                <h2>Citation<a class="headerlink" href="#act-citation" title="Permalink to this heading">#</a></h2>
-                                <p>If you use this baseline, please cite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre>@inproceedings{DBLP:conf/rss/ZhaoKLF23,
-  author       = {Tony Z. Zhao and
-                  Vikash Kumar and
-                  Sergey Levine and
-                  Chelsea Finn},
-  editor       = {Kostas E. Bekris and
-                  Kris Hauser and
-                  Sylvia L. Herbert and
-                  Jingjin Yu},
-  title        = {Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware},
-  booktitle    = {Robotics: Science and Systems XIX, Daegu, Republic of Korea, July
-                  10-14, 2023},
-  year         = {2023},
-  url          = {https://doi.org/10.15607/RSS.2023.XIX.016},
-  doi          = {10.15607/RSS.2023.XIX.016},
-  timestamp    = {Thu, 20 Jul 2023 15:37:49 +0200},
-  biburl       = {https://dblp.org/rec/conf/rss/ZhaoKLF23.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
-}</pre></div></div>
+                            <section id="starvla-collab-template">
+                                <h2>3. Maintenance Checklist<a class="headerlink" href="#starvla-collab-template" title="Permalink to this heading">#</a></h2>
+                                <ul class="simple">
+                                    <li><p><strong>Model Variant:</strong> GR00T variant name, checkpoint source, expected control mode.</p></li>
+                                    <li><p><strong>Runtime Topology:</strong> single-process vs dual-environment, port mapping, server/client launch order.</p></li>
+                                    <li><p><strong>Dataset Versioning:</strong> raw format, converted format, conversion script/version, required metadata files.</p></li>
+                                    <li><p><strong>Task Mapping:</strong> FGManip env IDs, object/part naming conventions, prompt templates.</p></li>
+                                    <li><p><strong>Failure Notes:</strong> common mismatch symptoms (shape mismatch, wrong control mode, missing modality fields) and fixes.</p></li>
+                                </ul>
                             </section>
                         </section>
                     </article>
