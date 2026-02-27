@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" data-content_root="">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
+    <title>ACT - Model Training Template</title>
+
+    <script data-cfasync="false">
+        document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+        document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    </script>
+    <noscript>
+        <style>
+            .pst-js-only {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+
+    <link href="../_static/styles/themeb6e5.css?digest=8878045cc6db502f8baf" rel="stylesheet"/>
+    <link href="../_static/styles/pydata-sphinx-themeb6e5.css?digest=8878045cc6db502f8baf" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css"/>
+
+    <script src="../_static/scripts/fontawesomeb6e5.js?digest=8878045cc6db502f8baf"></script>
+    <link rel="preload" as="script" href="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"/>
+    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"/>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+
+    <meta name="docsearch:language" content="en"/>
+    <meta name="docsearch:version" content="latest"/>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+<div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+<header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <div class="bd-header__inner bd-page-width">
+        <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+            <span class="fa-solid fa-bars"></span>
+        </button>
+        <div class="col-lg-3 navbar-header-items__start">
+            <div class="navbar-item">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-light" alt="User Guide - Home"/>
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-dark pst-js-only" alt="User Guide - Home"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 navbar-header-items">
+            <div class="me-auto navbar-header-items__center">
+                <div class="navbar-item">
+                    <nav>
+                        <ul class="bd-navbar-elements navbar-nav">
+                            <li class="nav-item"><a class="nav-link nav-internal" href="index.html">User Guide</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+            <div class="sidebar-primary-items__start sidebar-primary__section">
+                <div class="sidebar-primary-item">
+                    <nav class="bd-docs-nav bd-links"
+                         aria-label="Section Navigation">
+                        <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span
+                                class="caption-text">Get started</span></p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1"><a class="reference internal" href="getting_started/installation.html">Installation</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="getting_started/quickstart.html">Quickstart</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="getting_started/docker.html">Docker</a></li>
+                            </ul>
+                            <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1"><a class="reference internal" href="#">Part-Oriented Object Library</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="#">Skill Library</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="#">Tasks and Demonstrations</a></li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="demos/index.html">Demos</a>
+                                    <details>
+                                        <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="demos/gallery.html">Demo Gallery</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="demos/scripts.html">Demo Scripts</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                            <p aria-level="2" class="caption" role="heading"><span class="caption-text">Train and Evaluate</span></p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">End-to-End Pipeline</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="#">Data Recording</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="#">Trajectory Replay</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="#">Dataset Merge</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="#">Format Conversion</a></li>
+                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Model Training</a>
+                                                <details open="open">
+                                                    <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+                                                    <ul>
+                                                        <li class="toctree-l3 current active"><a class="current reference internal" href="#act">ACT</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">DP3</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">OpenVLA-OFT (ManiSkill to HDF5)</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">LeRobot [pi0.5] (ManiSkill to LeRobot 3.0)</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">StarVLA [GR00T] (ManiSkill to LeRobot 2.1)</a></li>
+                                                    </ul>
+                                                </details>
+                                            </li>
+                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Policy Evaluation</a>
+                                                <details open="open">
+                                                    <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+                                                    <ul>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">Evaluation Metrics</a></li>
+                                                        <li class="toctree-l3"><a class="reference internal" href="#">Leaderboard (Coming Soon)</a></li>
+                                                    </ul>
+                                                </details>
+                                            </li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="example_card_template.html">Task Examples</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#example-card-template">Example Card Template</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-01">Task Card 01</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-02">Task Card 02</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-03">Task Card 03</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-04">Task Card 04</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-05">Task Card 05</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-06">Task Card 06</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-07">Task Card 07</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-08">Task Card 08</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-09">Task Card 09</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="example_card_template.html#task-card-10">Task Card 10</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <main id="main-content" class="bd-main" role="main">
+            <div class="bd-content">
+                <div class="bd-article-container">
+                    <article class="bd-article">
+                        <section id="act">
+                            <h1>Action Chunking with Transformers (ACT)<a class="headerlink" href="#act" title="Permalink to this heading">#</a></h1>
+                            <p>
+                                Template page for running and documenting ACT experiments in this platform.
+                                This implementation is based on
+                                <a class="reference external" href="https://arxiv.org/pdf/2304.13705">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>
+                                and adapted from the
+                                <a class="reference external" href="https://github.com/tonyzhaozh/act">original ACT codebase</a>.
+                            </p>
+
+                            <section id="act-installation">
+                                <h2>Installation<a class="headerlink" href="#act-installation" title="Permalink to this heading">#</a></h2>
+                                <p>Recommended setup uses conda/mamba for environment isolation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>conda create -n act-ms python=3.9
+conda activate act-ms
+pip install -e .</pre></div></div>
+                            </section>
+
+                            <section id="act-setup">
+                                <h2>Setup<a class="headerlink" href="#act-setup" title="Permalink to this heading">#</a></h2>
+                                <p>
+                                    Before training, read the imitation learning setup guide:
+                                    <a class="reference internal" href="learning_from_demos/setup.html">imitation learning setup documentation</a>.
+                                    It covers demo download, preprocessing, fair evaluation protocol, and common failure modes.
+                                </p>
+                            </section>
+
+                            <section id="act-training">
+                                <h2>Training<a class="headerlink" href="#act-training" title="Permalink to this heading">#</a></h2>
+                                <p>
+                                    ACT learns from expert trajectories and is sensitive to episode horizon.
+                                    For slower demonstrations (e.g., motion planning or teleoperation), increase
+                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
+                                    so policy rollouts have enough time to complete the task.
+                                </p>
+                                <p>
+                                    Practical guideline: set
+                                    <code class="docutils literal notranslate"><span class="pre">--max-episode-steps</span></code>
+                                    to about 2x the mean trajectory length of your training demos.
+                                </p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>seed=1
+demos=100
+python train.py --env-id PickCube-v1 \
+  --demo-path ~/.maniskill/demos/PickCube-v1/motionplanning/trajectory.state.pd_ee_delta_pos.physx_cpu.h5 \
+  --control-mode "pd_ee_delta_pos" --sim-backend "physx_cpu" --num_demos $demos --max_episode_steps 100 \
+  --total_iters 30000 --log_freq 100 --eval_freq 5000 \
+  --exp-name=act-PickCube-v1-state-${demos}_motionplanning_demos-$seed \
+  --track</pre></div></div>
+
+                                <p>Project-specific example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python core/policies/act/train.py \
+  --env-id grasp_part \
+  --object-name bottle \
+  --part-name cap \
+  --demo-path demos/output.state+rgb.pd_ee_delta_pos.physx_cpu.h5 \
+  --control-mode pd_ee_delta_pos \
+  --num_demos 40 \
+  --total_iters 100000 \
+  --exp-name act-grasp-cabinet-handle \
+  --max_episode_steps 100</pre></div></div>
+                            </section>
+
+                            <section id="act-collaboration-template">
+                                <h2>Collaboration Template<a class="headerlink" href="#act-collaboration-template" title="Permalink to this heading">#</a></h2>
+                                <p>Use this checklist to keep ACT pages consistent across collaborators.</p>
+                                <ul class="simple">
+                                    <li><p><strong>Task + Data:</strong> environment ID, control mode, demo source, number of demonstrations, train/val split.</p></li>
+                                    <li><p><strong>Core Hyperparameters:</strong> total iters, batch size, chunk size, learning rate, max episode steps.</p></li>
+                                    <li><p><strong>Compute + Runtime:</strong> GPU type, wall-clock training time, average iteration speed.</p></li>
+                                    <li><p><strong>Evaluation Protocol:</strong> number of eval episodes, seeds, success metric definition, termination rules.</p></li>
+                                    <li><p><strong>Results Table:</strong> success rate mean/std over seeds, failure mode notes, demo videos.</p></li>
+                                    <li><p><strong>Reproducibility:</strong> exact command, commit hash, dataset checksum/path, config snapshot.</p></li>
+                                </ul>
+                            </section>
+
+                            <section id="act-citation">
+                                <h2>Citation<a class="headerlink" href="#act-citation" title="Permalink to this heading">#</a></h2>
+                                <p>If you use this baseline, please cite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>@inproceedings{DBLP:conf/rss/ZhaoKLF23,
+  author       = {Tony Z. Zhao and
+                  Vikash Kumar and
+                  Sergey Levine and
+                  Chelsea Finn},
+  editor       = {Kostas E. Bekris and
+                  Kris Hauser and
+                  Sylvia L. Herbert and
+                  Jingjin Yu},
+  title        = {Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware},
+  booktitle    = {Robotics: Science and Systems XIX, Daegu, Republic of Korea, July
+                  10-14, 2023},
+  year         = {2023},
+  url          = {https://doi.org/10.15607/RSS.2023.XIX.016},
+  doi          = {10.15607/RSS.2023.XIX.016},
+  timestamp    = {Thu, 20 Jul 2023 15:37:49 +0200},
+  biburl       = {https://dblp.org/rec/conf/rss/ZhaoKLF23.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}</pre></div></div>
+                            </section>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script defer src="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"></script>
+</body>
+</html>
