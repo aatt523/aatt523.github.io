@@ -1,0 +1,28 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 11 Feb 2026 22:45:46 at https://maniskill.readthedocs.io/en/latest/user_guide/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "zh, en, *" https://maniskill.readthedocs.io/en/latest/user_guide/index.html -O1 "C:\My Websites\Maniskill-web" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+22:46:11	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/index.html)
+22:47:16	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/getting_started/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/getting_started/installation.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/demos/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/demos/index.html)
+22:47:17	Warning: 	Retry after error -5 (error:00000005:lib(0):func(0):DH lib) at link https://github.com/StoneT2000/paper-assets/raw/refs/heads/main/projects/mani_skill3/pusht_low_close_thumb.jpg (from https://maniskill.readthedocs.io/en/latest/user_guide/demos/gallery.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/custom_tasks/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/custom_tasks/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/sim2real/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/tutorials/sim2real/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/concepts/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/concepts/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/datasets/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/datasets/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/data_collection/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/data_collection/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/reinforcement_learning/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/reinforcement_learning/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/learning_from_demos/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/learning_from_demos/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/vision_language_action_models/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/vision_language_action_models/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/wrappers/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/wrappers/index.html)
+22:47:17	Error: 	"Not Found" (404) at link https://maniskill.readthedocs.io/en/latest/user_guide/additional_resources/_static/version_switcher.json (from https://maniskill.readthedocs.io/en/latest/user_guide/additional_resources/performance_benchmarking.html)
+22:47:18	Warning: 	Found for https://github.com/StoneT2000/paper-assets/raw/refs/heads/main/projects/mani_skill3/pusht_low_close_thumb.jpg
+22:47:18	Warning: 	Warning moved treated for https://github.com/StoneT2000/paper-assets/raw/refs/heads/main/projects/mani_skill3/pusht_low_close_thumb.jpg (real one is https://media.githubusercontent.com/media/StoneT2000/paper-assets/refs/heads/main/projects/mani_skill3/pusht_low_close_thumb.jpg)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 34 seconds : 137 links scanned, 120 files written (40132428 bytes overall) [35987938 bytes received at 382850 bytes/sec], 5949234 bytes transferred using HTTP compression in 83 files, ratio 26%, 6.3 requests per connection
+(14 errors, 3 warnings, 0 messages)
