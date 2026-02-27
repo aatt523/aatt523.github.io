@@ -1,6 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-.readthedocs.io	TRUE	/	FALSE	1999999999	__cf_bm	lF_hNQH32h3qgRTzAJBA0VlUiWKyTBw7UvC.aSm6j6o-1770821147-1.0.1.1-knEehGr6TGpxb.8hEn7uXoYwyDLTgEOmvkWZOP8Tg10LlQDKq59_lWdvcvZYpiSLKI8j9y57SiS5N6hKAqNE4NEv30BEt61j4rt47rtYeuA
-.readthedocs.io	TRUE	/	FALSE	1999999999	_cfuvid	68HiUjY07qjW4jH_t3io3HkS77C7mx2qYptYk1BNuR0-1770821147668-0.0.1.1-604800000
-maniskill.readthedocs.io	TRUE	/	FALSE	1999999999	SameSite	None
-

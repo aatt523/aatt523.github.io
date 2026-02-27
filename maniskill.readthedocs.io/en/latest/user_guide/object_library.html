@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-content_root="">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
+    <title>ACT - FGManip Policy Guide</title>
+
+    <script data-cfasync="false">
+        document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+        document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    </script>
+    <noscript>
+        <style>
+            .pst-js-only {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+
+    <link href="../_static/styles/themeb6e5.css?digest=8878045cc6db502f8baf" rel="stylesheet"/>
+    <link href="../_static/styles/pydata-sphinx-themeb6e5.css?digest=8878045cc6db502f8baf" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css"/>
+
+    <script src="../_static/scripts/fontawesomeb6e5.js?digest=8878045cc6db502f8baf"></script>
+    <link rel="preload" as="script" href="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"/>
+    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"/>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+
+    <meta name="docsearch:language" content="en"/>
+    <meta name="docsearch:version" content="latest"/>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%"
+      data-default-mode="">
+<div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+<header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <div class="bd-header__inner bd-page-width">
+        <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+            <span class="fa-solid fa-bars"></span>
+        </button>
+        <div class="col-lg-3 navbar-header-items__start">
+            <div class="navbar-item">
+                <a class="navbar-brand logo" href="https://maniskill.readthedocs.io/en/latest/index.html">
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-light"
+                         alt="ManiSkill 3.0.0b22 documentation - Home"/>
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-dark pst-js-only"
+                         alt="ManiSkill 3.0.0b22 documentation - Home"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 navbar-header-items">
+            <div class="me-auto navbar-header-items__center">
+                <div class="navbar-item">
+                    <nav>
+                        <ul class="bd-navbar-elements navbar-nav">
+                            <li class="nav-item"><a class="nav-link nav-internal" href="index.html">User Guide</a></li>
+                            <li class="nav-item"><a class="nav-link nav-internal"
+                                                    href="https://maniskill.readthedocs.io/en/latest/tasks/index.html">Tasks</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link nav-internal"
+                                                    href="https://maniskill.readthedocs.io/en/latest/contributing/index.html">Contributing</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false" aria-controls="pst-nav-more-links">
+                                    More
+                                </button>
+                                <ul id="pst-nav-more-links" class="dropdown-menu">
+                                    <li><a class="nav-link dropdown-item nav-internal"
+                                           href="https://maniskill.readthedocs.io/en/latest/api/index.html">API
+                                        Reference</a></li>
+                                    <li><a class="nav-link dropdown-item nav-external"
+                                           href="https://github.com/haosulab/ManiSkill/releases">Changelog</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+            <div class="sidebar-primary-items__start sidebar-primary__section">
+                <div class="sidebar-primary-item">
+                    <nav class="bd-docs-nav bd-links"
+                         aria-label="Section Navigation">
+                        <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+                        <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span
+                                class="caption-text">Get started</span></p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1"><a class="reference internal"
+                                                          href="getting_started/installation.html"><i
+                                        class="fa-solid fa-box"></i> Installation</a></li>
+                                <li class="toctree-l1"><a class="reference internal"
+                                                          href="getting_started/quickstart.html"><i
+                                        class="fa-solid fa-rocket"></i> Quickstart</a></li>
+                            </ul>
+                            <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span>
+                            </p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1"><a class="reference internal" href="#">Part-Oriented Object
+                                    Library</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="#">Skill Library</a></li>
+                                <li class="toctree-l1"><a class="reference internal" href="#">Tasks and
+                                    Demonstrations</a></li>
+                                <li class="toctree-l1 has-children"><a class="reference internal"
+                                                                       href="demos/index.html"><i
+                                        class="fa-solid fa-list"></i> Demos</a>
+                                    <details>
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="demos/gallery.html">Demo Gallery</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="demos/scripts.html">Demo Scripts</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                            <p aria-level="2" class="caption" role="heading"><span class="caption-text">Train and Evaluate</span>
+                            </p>
+                            <ul class="nav bd-sidenav">
+                                <li class="toctree-l1 has-children"><a class="reference internal"
+                                                                       href="data_workflow.html">Data Workflow</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="data_workflow.html#data-recording">Data
+                                                Recording</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="data_workflow.html#trajectory-replay">Trajectory
+                                                Replay</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="data_workflow.html#dataset-merge">Dataset
+                                                Merge</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="data_workflow.html#format-conversion">Format
+                                                Conversion</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">Model
+                                    Training</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2 current active"><a class="current reference internal"
+                                                                                     href="#act">ACT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="model_training_dp3.html">DP3</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="model_training_openvla_oft.html">OpenVLA-OFT</a>
+                                            </li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="model_training_pi05.html">Lerobot Pi05</a>
+                                            </li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="model_training_starvla.html">StarVLA
+                                                GR00T</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal"
+                                                                       href="policy_evaluation.html">Policy
+                                    Evaluation</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="policy_evaluation.html#evaluation-metrics">Evaluation
+                                                Metrics</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="policy_evaluation.html#leaderboard-coming-soon">Leaderboard
+                                                (Coming Soon)</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal"
+                                                                       href="example_card_template.html">Task
+                                    Examples</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#example-card-template">Example
+                                                Card Template</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-01">Task
+                                                Card 01</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-02">Task
+                                                Card 02</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-03">Task
+                                                Card 03</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-04">Task
+                                                Card 04</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-05">Task
+                                                Card 05</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-06">Task
+                                                Card 06</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-07">Task
+                                                Card 07</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-08">Task
+                                                Card 08</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-09">Task
+                                                Card 09</a></li>
+                                            <li class="toctree-l2"><a class="reference internal"
+                                                                      href="example_card_template.html#task-card-10">Task
+                                                Card 10</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <main id="main-content" class="bd-main" role="main">
+            <div class="bd-content">
+                <div class="bd-article-container">
+                    <article class="bd-article">
+                        <section id="act">
+                            <h1>Part-Oriented Objects<a class="headerlink" href="#act"
+                                                                          title="Permalink to this heading">#</a></h1>
+                            <p>
+                                This page documents the ACT baseline used in FGManip.
+                                This implementation is based on
+                                <a class="reference external" href="https://arxiv.org/pdf/2304.13705">Learning
+                                    Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>
+                                and adapted from the
+                                <a class="reference external" href="https://github.com/tonyzhaozh/act">original ACT
+                                    codebase</a>.
+                            </p>
+                            <p>
+                                <strong>Integration status:</strong> ACT currently runs as a dedicated policy pipeline.
+                                Command interfaces and config layout are not yet fully unified with all other policy
+                                backends.
+                            </p>
+
+                            <section id="act-setup">
+                                <h2>Setup<a class="headerlink" href="#act-setup" title="Permalink to this heading">#</a>
+                                </h2>
+                                <p>
+                                    Before training, read the imitation learning setup guide:
+                                    <a class="reference internal" href="learning_from_demos/setup.html">imitation
+                                        learning setup documentation</a>.
+                                    It covers demo download, preprocessing, fair evaluation protocol, and common failure
+                                    modes.
+                                </p>
+                            </section>
+
+                            <section id="act-collaboration-template">
+                                <h2>Maintenance Checklist<a class="headerlink" href="#act-collaboration-template"
+                                                            title="Permalink to this heading">#</a></h2>
+                                <p>Use this checklist to keep ACT documentation consistent across contributors.</p>
+                                <ul class="simple">
+                                    <li><p><strong>Task + Data:</strong> environment ID, control mode, demo source,
+                                        number of demonstrations, train/val split.</p></li>
+                                    <li><p><strong>Core Hyperparameters:</strong> total iters, batch size, chunk size,
+                                        learning rate, max episode steps.</p></li>
+                                    <li><p><strong>Compute + Runtime:</strong> GPU type, wall-clock training time,
+                                        average iteration speed.</p></li>
+                                    <li><p><strong>Evaluation Protocol:</strong> number of eval episodes, seeds, success
+                                        metric definition, termination rules.</p></li>
+                                    <li><p><strong>Results Table:</strong> success rate mean/std over seeds, failure
+                                        mode notes, demo videos.</p></li>
+                                    <li><p><strong>Reproducibility:</strong> exact command, commit hash, dataset
+                                        checksum/path, config snapshot.</p></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script defer src="../_static/scripts/bootstrapb6e5.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-themeb6e5.js?digest=8878045cc6db502f8baf"></script>
+</body>
+</html>
