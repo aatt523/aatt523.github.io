@@ -57,9 +57,9 @@
         </button>
         <div class="col-lg-3 navbar-header-items__start">
             <div class="navbar-item">
-                <a class="navbar-brand logo" href="index.html">
-                    <img src="../_static/logo_placeholder.svg" class="logo__image only-light" alt="User Guide - Home"/>
-                    <img src="../_static/logo_placeholder.svg" class="logo__image only-dark pst-js-only" alt="User Guide - Home"/>
+                <a class="navbar-brand logo" href="https://maniskill.readthedocs.io/en/latest/index.html">
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-light" alt="ManiSkill 3.0.0b22 documentation - Home"/>
+                    <img src="../_static/logo_placeholder.svg" class="logo__image only-dark pst-js-only" alt="ManiSkill 3.0.0b22 documentation - Home"/>
                 </a>
             </div>
         </div>
@@ -69,6 +69,17 @@
                     <nav>
                         <ul class="bd-navbar-elements navbar-nav">
                             <li class="nav-item"><a class="nav-link nav-internal" href="index.html">User Guide</a></li>
+                            <li class="nav-item"><a class="nav-link nav-internal" href="https://maniskill.readthedocs.io/en/latest/tasks/index.html">Tasks</a></li>
+                            <li class="nav-item"><a class="nav-link nav-internal" href="https://maniskill.readthedocs.io/en/latest/contributing/index.html">Contributing</a></li>
+                            <li class="nav-item dropdown">
+                                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                                    More
+                                </button>
+                                <ul id="pst-nav-more-links" class="dropdown-menu">
+                                    <li><a class="nav-link dropdown-item nav-internal" href="https://maniskill.readthedocs.io/en/latest/api/index.html">API Reference</a></li>
+                                    <li><a class="nav-link dropdown-item nav-external" href="https://github.com/haosulab/ManiSkill/releases">Changelog</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -102,8 +113,6 @@
                                         <path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
                                     </svg>
                                     Quickstart</a></li>
-                                <li class="toctree-l1"><a class="reference internal"
-                                                          href="getting_started/docker.html">Docker</a></li>
                             </ul>
                             <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span>
                             </p>
@@ -134,38 +143,38 @@
                             <p aria-level="2" class="caption" role="heading"><span class="caption-text">Train and Evaluate</span>
                             </p>
                             <ul class="nav bd-sidenav">
-                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">End-to-End Pipeline</a>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="data_workflow.html">Data Workflow</a>
                                     <details open="open">
                                         <summary><span class="toctree-toggle" role="presentation"><i
                                                 class="fa-solid fa-chevron-down"></i></span></summary>
                                         <ul>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Data Recording</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Trajectory Replay</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Dataset Merge</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Format Conversion</a></li>
-                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Model Training</a>
-                                                <details open="open">
-                                                    <summary><span class="toctree-toggle" role="presentation"><i
-                                                            class="fa-solid fa-chevron-down"></i></span></summary>
-                                                    <ul>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
-                                                    </ul>
-                                                </details>
-                                            </li>
-                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Policy Evaluation</a>
-                                                <details open="open">
-                                                    <summary><span class="toctree-toggle" role="presentation"><i
-                                                            class="fa-solid fa-chevron-down"></i></span></summary>
-                                                    <ul>
-                                                        <li class="toctree-l3"><a class="reference internal" href="#">Evaluation Metrics</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="#">Leaderboard (Coming Soon)</a></li>
-                                                    </ul>
-                                                </details>
-                                            </li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#data-recording">Data Recording</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#trajectory-replay">Trajectory Replay</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#dataset-merge">Dataset Merge</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#format-conversion">Format Conversion</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">Model Training</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_act.html">ACT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="policy_evaluation.html">Policy Evaluation</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#evaluation-metrics">Evaluation Metrics</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#leaderboard-coming-soon">Leaderboard (Coming Soon)</a></li>
                                         </ul>
                                     </details>
                                 </li>

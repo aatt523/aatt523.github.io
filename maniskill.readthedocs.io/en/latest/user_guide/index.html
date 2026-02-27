@@ -440,8 +440,6 @@
                                         <path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
                                     </svg>
                                     Quickstart</a></li>
-                                <li class="toctree-l1"><a class="reference internal"
-                                                          href="getting_started/docker.html">Docker</a></li>
                             </ul>
                             <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span>
                             </p>
@@ -472,38 +470,38 @@
                             <p aria-level="2" class="caption" role="heading"><span class="caption-text">Train and Evaluate</span>
                             </p>
                             <ul class="nav bd-sidenav">
-                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">End-to-End Pipeline</a>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="data_workflow.html">Data Workflow</a>
                                     <details open="open">
                                         <summary><span class="toctree-toggle" role="presentation"><i
                                                 class="fa-solid fa-chevron-down"></i></span></summary>
                                         <ul>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Data Recording</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Trajectory Replay</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Dataset Merge</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Format Conversion</a></li>
-                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Model Training</a>
-                                                <details open="open">
-                                                    <summary><span class="toctree-toggle" role="presentation"><i
-                                                            class="fa-solid fa-chevron-down"></i></span></summary>
-                                                    <ul>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
-                                                    </ul>
-                                                </details>
-                                            </li>
-                                            <li class="toctree-l2 has-children"><a class="reference internal" href="#">Policy Evaluation</a>
-                                                <details open="open">
-                                                    <summary><span class="toctree-toggle" role="presentation"><i
-                                                            class="fa-solid fa-chevron-down"></i></span></summary>
-                                                    <ul>
-                                                        <li class="toctree-l3"><a class="reference internal" href="#">Evaluation Metrics</a></li>
-                                                        <li class="toctree-l3"><a class="reference internal" href="#">Leaderboard (Coming Soon)</a></li>
-                                                    </ul>
-                                                </details>
-                                            </li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#data-recording">Data Recording</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#trajectory-replay">Trajectory Replay</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#dataset-merge">Dataset Merge</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#format-conversion">Format Conversion</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="#">Model Training</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_act.html">ACT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li class="toctree-l1 has-children"><a class="reference internal" href="policy_evaluation.html">Policy Evaluation</a>
+                                    <details open="open">
+                                        <summary><span class="toctree-toggle" role="presentation"><i
+                                                class="fa-solid fa-chevron-down"></i></span></summary>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#evaluation-metrics">Evaluation Metrics</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#leaderboard-coming-soon">Leaderboard (Coming Soon)</a></li>
                                         </ul>
                                     </details>
                                 </li>
@@ -606,57 +604,18 @@
                                 <a class="reference external" href="https://discord.gg/x8yUZe5AdN"><img alt="Discord"
                                                                                                         src="https://img.shields.io/discord/996566046414753822?logo=discord"/></a>
                             </p>
-                            <p>ManiSkill is a powerful unified framework for robot simulation and training powered by <a
-                                    class="reference external" href="https://sapien.ucsd.edu/">SAPIEN</a>, with a strong
-                                focus on manipulation skills. The entire tech stack is as open-source as possible and
-                                ManiSkill v3 is in beta release now. Among its features include:</p>
+                            <p>FGManip is an open platform purpose-built for fine-grained manipulation research. It connects part-level interaction modeling, scalable data generation, policy training, and standardized evaluation into one end-to-end workflow for both fast iteration and rigorous benchmarking.</p>
+                            <p>Why FGManip stands out:</p>
                             <ul class="simple">
-                                <li><p>GPU parallelized visual data collection system. On the high end you can collect
-                                    RGBD + Segmentation data at 30,000+ FPS with a 4090 GPU!</p></li>
-                                <li><p>GPU parallelized simulation, enabling high throughput state-based synthetic data
-                                    collection in simulation</p></li>
-                                <li><p>GPU parallelized heterogeneous simulation, where every parallel environment has a
-                                    completely different scene/set of objects</p></li>
-                                <li><p>Example tasks cover a wide range of different robot embodiments (humanoids,
-                                    mobile manipulators, single-arm robots) as well as a wide range of different tasks
-                                    (table-top, drawing/cleaning, dextrous manipulation)</p></li>
-                                <li><p>Flexible and simple task building API that abstracts away much of the complex GPU
-                                    memory management code via an object oriented design</p></li>
-                                <li><p>Real2sim environments for scalably evaluating real-world policies 100x faster via
-                                    GPU simulation.</p></li>
-                                <li><p>Many tuned robot learning baselines in Reinforcement Learning (e.g. PPO, SAC, <a
-                                        class="reference external" href="https://github.com/nicklashansen/tdmpc2">TD-MPC2</a>),
-                                    Imitation Learning (e.g. Behavior Cloning, <a class="reference external"
-                                                                                  href="https://github.com/real-stanford/diffusion_policy">Diffusion
-                                        Policy</a>), and large Vision Language Action (VLA) models (e.g. <a
-                                            class="reference external"
-                                            href="https://github.com/octo-models/octo">Octo</a>, <a
-                                            class="reference external"
-                                            href="https://github.com/thu-ml/RoboticsDiffusionTransformer">RDT-1B</a>, <a
-                                            class="reference external" href="https://robotics-transformer-x.github.io/">RT-x</a>)
-                                </p></li>
+                                <li><p><strong>Large-scale fine-grained assets:</strong> 431 annotated objects, 1,078 annotated parts, and 4,312 grasp pose candidates for part-level manipulation research.</p></li>
+                                <li><p><strong>High-efficiency annotation:</strong> an open lightweight tool supports rapid custom data onboarding, with typical single-instance annotation time under 20 seconds.</p></li>
+                                <li><p><strong>Composable skills, expandable tasks:</strong> reusable skills can be combined to construct new tasks, and we provide 50 example tasks with 1,000 trajectories per task.</p></li>
+                                <li><p><strong>Cross-architecture policy support:</strong> FGManip supports classic policy families across different architectures and can be used directly with LeRobot / StarVLA training and testing workflows.</p></li>
+                                <li><p><strong>Benchmark-oriented evaluation:</strong> we provide a relatively complete evaluation framework for fine-grained manipulation, emphasizing reproducibility, fair comparison, and consistent protocol design.</p></li>
                             </ul>
-                            <p>For more details we encourage you to take a look at our <a class="reference external"
-                                                                                          href="https://arxiv.org/abs/2410.00425">paper</a>,
-                                published at <a class="reference external" href="https://roboticsconference.org/">RSS
-                                    2025</a>.</p>
-                            <p>There are more features to be added to ManiSkill 3, see <a class="reference external"
-                                                                                          href="https://maniskill.readthedocs.io/en/latest/roadmap/index.html">our
-                                roadmap</a> for planned features that will be added over time before the official v3 is
-                                released.</p>
-                            <p>Please refer to our <a class="reference external"
-                                                      href="https://maniskill.readthedocs.io/en/latest/user_guide">documentation</a>
-                                to learn more information from tutorials on building tasks to data collection.</p>
-                            <p><strong>NOTE:</strong>
-                                This project currently is in a <strong>beta release</strong>, so not all features have
-                                been added in yet and there may be some bugs. If you find any bugs or have any feature
-                                requests please post them to our <a class="reference external"
-                                                                    href="https://github.com/haosulab/ManiSkill/issues/">GitHub
-                                    issues</a> or discuss about them on <a class="reference external"
-                                                                           href="https://github.com/haosulab/ManiSkill/discussions/">GitHub
-                                    discussions</a>. We also have a <a class="reference external"
-                                                                       href="https://discord.gg/x8yUZe5AdN">Discord
-                                    Server</a> through which we make announcements and discuss about ManiSkill.</p>
+                            <p>In short, FGManip is not only a development platform, but also a benchmark-ready environment for measuring policy behavior on challenging fine-grained tasks.</p>
+                            <p>This documentation covers installation, quickstart, data workflow, task examples, policy training templates, and evaluation setup for collaborative and reproducible research.</p>
+                            <p><strong>Contribute:</strong> we welcome bug reports, feature requests, benchmark suggestions, and code contributions. Please share issues and feedback through the project repository issue tracker and discussions.</p>
                             <div class="toctree-wrapper compound">
                                 <p aria-level="2" class="caption" role="heading"><span
                                         class="caption-text">Get started</span></p>
@@ -665,8 +624,6 @@
                                                               href="getting_started/installation.html">Installation</a></li>
                                     <li class="toctree-l1"><a class="reference internal"
                                                               href="getting_started/quickstart.html">Quickstart</a></li>
-                                    <li class="toctree-l1"><a class="reference internal"
-                                                              href="getting_started/docker.html">Docker</a></li>
                                 </ul>
                             </div>
                             <div class="toctree-wrapper compound">
@@ -682,27 +639,27 @@
                                 <p aria-level="2" class="caption" role="heading"><span
                                         class="caption-text">Train and Evaluate</span></p>
                                 <ul>
-                                    <li class="toctree-l1"><a class="reference internal" href="#">End-to-End Pipeline</a>
+                                    <li class="toctree-l1"><a class="reference internal" href="data_workflow.html">Data Workflow</a>
                                         <ul>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Data Recording</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Trajectory Replay</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Dataset Merge</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Format Conversion</a></li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Model Training</a>
-                                                <ul>
-                                                    <li class="toctree-l3"><a class="reference internal" href="model_training_act.html">ACT</a></li>
-                                                    <li class="toctree-l3"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
-                                                    <li class="toctree-l3"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
-                                                    <li class="toctree-l3"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
-                                                    <li class="toctree-l3"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="toctree-l2"><a class="reference internal" href="#">Policy Evaluation</a>
-                                                <ul>
-                                                    <li class="toctree-l3"><a class="reference internal" href="#">Evaluation Metrics</a></li>
-                                                    <li class="toctree-l3"><a class="reference internal" href="#">Leaderboard (Coming Soon)</a></li>
-                                                </ul>
-                                            </li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#data-recording">Data Recording</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#trajectory-replay">Trajectory Replay</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#dataset-merge">Dataset Merge</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="data_workflow.html#format-conversion">Format Conversion</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="#">Model Training</a>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_act.html">ACT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_dp3.html">DP3</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_openvla_oft.html">OpenVLA-OFT</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_pi05.html">Lerobot Pi05</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="model_training_starvla.html">StarVLA GR00T</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="policy_evaluation.html">Policy Evaluation</a>
+                                        <ul>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#evaluation-metrics">Evaluation Metrics</a></li>
+                                            <li class="toctree-l2"><a class="reference internal" href="policy_evaluation.html#leaderboard-coming-soon">Leaderboard (Coming Soon)</a></li>
                                         </ul>
                                     </li>
                                     <li class="toctree-l1"><a class="reference internal" href="example_card_template.html">Task Examples</a>
