@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/"/>
-    <title>Part-Oriented Object Library - FGManip User Guide</title>
+    <title>Part-Annotated Object Library - FGManip User Guide</title>
 
     <script data-cfasync="false">
         document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -85,7 +85,7 @@
                             </ul>
                             <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
                             <ul class="nav bd-sidenav">
-                                <li class="toctree-l1 current"><a class="reference internal" href="part_oriented_library.html">Part-Oriented Object Library</a></li>
+                                <li class="toctree-l1 current"><a class="reference internal" href="part_oriented_library.html">Part-Annotated Object Library</a></li>
                                 <li class="toctree-l1"><a class="reference internal" href="skill_library/gallery.html">Skill Library</a></li>
                                 <li class="toctree-l1"><a class="reference internal" href="tasks_demos.html">Tasks and Demonstrations</a></li>
                             </ul>
@@ -131,10 +131,13 @@
             <div class="bd-content">
                 <div class="bd-article-container">
                     <article class="bd-article">
-                        <section id="part-oriented-object-library">
-                            <h1>Part-Oriented Object Library<a class="headerlink" href="#part-oriented-object-library" title="Permalink to this heading">#</a></h1>
+                        <section id="part-annotated-object-library">
+                            <h1>Part-Annotated Object Library<a class="headerlink" href="#part-annotated-object-library" title="Permalink to this heading">#</a></h1>
                             <p>Part-level annotations—labeled parts and grasp pose candidates—form the <strong>foundation of FGManip's fine-grained manipulation</strong>. The library is <strong>extensible</strong>: you can add new objects and parts using the annotation tool, and the resulting grasp data feeds directly into the <a class="reference internal" href="skill_library/gallery.html"><span class="std std-doc">Skill Library</span></a> for manipulation policies. This page describes the current scale of the library and how to use the annotation tool.</p>
-
+                            <figure>
+                                <img src="../_images/urdf.png" alt="URDF structure diagram" class="align-center" style="max-width: 100%;"/>
+                                <figcaption><p>URDF structure for part-annotated objects.</p></figcaption>
+                            </figure>
                             <section id="library-scale">
                                 <h2>Library Scale<a class="headerlink" href="#library-scale" title="Permalink to this heading">#</a></h2>
                                 <table class="table table-striped">
@@ -231,7 +234,7 @@
                             </div>
                             <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
                                 <ul class="visible nav section-nav flex-column">
-                                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-oriented-object-library">Part-Oriented Object Library</a></li>
+                                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-annotated-object-library">Part-Annotated Object Library</a></li>
                                     <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-scale">Library Scale</a></li>
                                     <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annotation-tool">Annotation Tool</a></li>
                                 </ul>
